@@ -26,9 +26,16 @@ class HomeScreen extends Component {
         // DISPLAY WHERE WE ARE
         console.log("\tHomeScreen render");
         let styles = {
-            container: {
+            bannerText: {
                 color: "#000000",
                 fontSize: "20px"
+            },
+            container: {
+                marginTop: "2.5em"
+            },
+            button: {
+                marginTop: "1em",
+                cursor: "pointer"
             }
         }
         return (
@@ -40,16 +47,16 @@ class HomeScreen extends Component {
                         goToLogoCallback={this.props.goToLogoCallback}
                     />
                 </div>
-                <div className="col s8">
+                <div className="col s8" style={styles.container}>
                     <div id="home_banner_container">
                         Gologolo 
-                        <div id="home_subbanner_container" style={styles.container}>
+                        <div id="home_subbanner_container" style={styles.bannerText}>
                         Logo Creator
                     </div>
                     </div>
                     <div>
                         <button
-                            style={{ cursor: "pointer" }}
+                            style={styles.button}
                             onClick={this.handleAddNewLogo}>
                             Create a New Logo
                         </button>

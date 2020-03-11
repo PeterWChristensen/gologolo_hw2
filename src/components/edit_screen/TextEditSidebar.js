@@ -8,7 +8,8 @@ class TextEditSidebar extends Component {
         // VALUES HERE
         this.state = {
             textColor : "#FF0000",
-            fontSize : 24
+            fontSize : 24,
+            backgroundColor : "#FFFFFF"
         }
     }
 
@@ -26,10 +27,15 @@ class TextEditSidebar extends Component {
         this.setState({ fontSize: event.target.value }, this.completeUserEditing);
     }
 
+    handleBackgroundColorChange = (event) => {
+        console.log("handleBackgroundColorChange to " + event.target.value);
+        this.setState({ backgroundColor: event.target.value }, this.completeUserEditing);
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor, this.state.fontSize);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor);
     }
 
     render() {
@@ -63,6 +69,14 @@ class TextEditSidebar extends Component {
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleFontSizeChange}
                                     value={this.props.logo.fontSize} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Background Color:</div>
+                            <div className="col s8">
+                                <input type="color" 
+                                    onChange={this.handleBackgroundColorChange}
+                                    value={this.props.logo.backgroundColor} />
                             </div>
                         </div>
                     </div>
