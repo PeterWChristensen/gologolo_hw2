@@ -25,7 +25,12 @@ class HomeScreen extends Component {
     render() {
         // DISPLAY WHERE WE ARE
         console.log("\tHomeScreen render");
-
+        let styles = {
+            container: {
+                color: "#000000",
+                fontSize: "20px"
+            }
+        }
         return (
             <div className="container row">
                 <div className="col s4">
@@ -37,8 +42,10 @@ class HomeScreen extends Component {
                 </div>
                 <div className="col s8">
                     <div id="home_banner_container">
-                        @todo<br />
-                        List Maker
+                        Gologolo 
+                        <div id="home_subbanner_container" style={styles.container}>
+                        Logo Creator
+                    </div>
                     </div>
                     <div>
                         <button
