@@ -314,6 +314,8 @@ class App extends Component {
     console.log("App afterLogoDeleted logos: " + this.logosToString(this.state.logos));
     // FIRST GO HOME
     this.goToHomeScreen();
+    let logosString = JSON.stringify(this.state.logos);
+    localStorage.setItem("recent_work", logosString);
   }
 
   // THERE ARE TWO FUNCTIONS TO HELP GENERATE OUTPUT FOR DEBUGGING
@@ -370,6 +372,7 @@ class App extends Component {
           logo={this.state.currentLogo}                         // DATA NEEDED BY THIS COMPONENT AND ITS DESCENDANTS
           goToHomeCallback={this.goToHomeScreen}                    // NAVIGATION CALLBACK
           changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
+          deleteLogoCallback={this.deleteLogo}
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
 

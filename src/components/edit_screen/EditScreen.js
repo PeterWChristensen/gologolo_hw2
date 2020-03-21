@@ -29,12 +29,15 @@ export class EditScreen extends Component {
         console.log("\tEditScreen render");
         return (
             <div className="container">
-                <Navbar goToHomeCallback={this.props.goToHomeCallback} />
+                <Navbar goToHomeCallback={this.props.goToHomeCallback} 
+                        deleteLogoCallback={this.props.deleteLogoCallback}
+                        logo={this.props.logo} />
                 <div className="row">
                     <TextEditSidebar
                         logo={this.props.logo}
                         changeLogoCallback={this.props.changeLogoCallback}
-                        undoCallback={this.props.undoCallback}                                          
+                        undoCallback={this.props.undoCallback}    
+                        deleteLogoCallback={this.props.deleteLogoCallback}                                      
                         canUndo={this.props.canUndo}                         
                     />
                     <TextEditWorkspace

@@ -1,8 +1,8 @@
 import React from 'react'
 
 class Navbar extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     console.log("Navbar constructed");
   }
@@ -20,17 +20,24 @@ class Navbar extends React.Component {
     this.props.goToHomeCallback();
   }
 
+  handleDeleteLogo = () => {
+    console.log("handleDeleteLogo");
+    this.props.deleteLogoCallback(this.props.logo.key);
+  }
+
   render() {
     return (
       <nav>
         <div className="nav-wrapper">
           <div  className='brand-logo' 
-                style={ {cursor: "pointer"} }
+                style={ {cursor: "pointer", paddingLeft: "5pt"} }
                 onClick={this.handleGoHome}>
             goLogoLo
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li style={ {cursor: "pointer"} }>&#128465;</li>
+            <li style={ {cursor: "pointer", fontSize: "35pt"}} 
+                onClick={this.handleDeleteLogo}>
+                &#128465;</li>
           </ul>
         </div>
       </nav>
