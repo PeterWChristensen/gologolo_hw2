@@ -9,7 +9,10 @@ class TextEditSidebar extends Component {
         this.state = {
             textColor : "#FF0000",
             fontSize : 24,
-            backgroundColor : "#FFFFFF"
+            backgroundColor : "#FFFFFF",
+            borderColor: "#FFFFFF",
+            borderRadius: 5,
+            borderWidth: 2
         }
     }
 
@@ -23,7 +26,7 @@ class TextEditSidebar extends Component {
     }
 
     handleFontSizeChange = (event) => {
-        console.log("handleTextColorChangeComplete to " + event.target.value);
+        console.log("handleFontSizeChangeComplete to " + event.target.value);
         this.setState({ fontSize: event.target.value }, this.completeUserEditing);
     }
 
@@ -32,10 +35,27 @@ class TextEditSidebar extends Component {
         this.setState({ backgroundColor: event.target.value }, this.completeUserEditing);
     }
 
+    handleBorderColorChange = (event) => {
+        console.log("handleBorderColorChangeComplete to " + event.target.value);
+        this.setState({ borderColor: event.target.value }, this.completeUserEditing);
+    }
+
+    handleBorderRadiusChange = (event) => {
+        console.log("handleBorderRadiusChangeComplete to " + event.target.value);
+        this.setState({ borderRadius: event.target.value }, this.completeUserEditing);
+    }
+
+    handleBorderWidthChange = (event) => {
+        console.log("handleTextColorChangeComplete to " + event.target.value);
+        this.setState({ borderWidth: event.target.value }, this.completeUserEditing);
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor,
+                                      this.state.fontSize, this.state.backgroundColor, this.state.borderColor, this.state.borderRadius, 
+                                      this.state.borderWidth);
     }
 
     render() {
@@ -77,6 +97,30 @@ class TextEditSidebar extends Component {
                                 <input type="color" 
                                     onChange={this.handleBackgroundColorChange}
                                     value={this.props.logo.backgroundColor} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Color:</div>
+                            <div className="col s8">
+                                <input type="color" 
+                                    onChange={this.handleBorderColorChange}
+                                    value={this.props.logo.borderColor} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Radius:</div>
+                            <div className="col s8">
+                                <input type="range" min="1" max="30" 
+                                    onChange={this.handleBorderRadiusChange}
+                                    value={this.props.logo.borderRadius} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Border Thickness:</div>
+                            <div className="col s8">
+                                <input type="range" min="0" max="50" 
+                                    onChange={this.handleBorderWidthChange}
+                                    value={this.props.logo.borderWidth} />
                             </div>
                         </div>
                     </div>
