@@ -14,7 +14,9 @@ class TextEditSidebar extends Component {
             borderColor : this.props.logo.borderColor,
             borderRadius : this.props.logo.borderRadius,
             borderThickness : this.props.logo.borderThickness,
-            borderStyle: "solid"
+            borderStyle : "solid",
+            padding : this.props.logo.padding,
+            margin : this.props.logo.margin
             
         }
 
@@ -54,12 +56,22 @@ class TextEditSidebar extends Component {
         this.setState({ borderThickness: event.target.value }, this.completeUserEditing);
     }
 
+    handlePaddingChange = (event) => {
+        console.log("handlePaddingChangeComplete to " + event.target.value);
+        this.setState({ padding: event.target.value }, this.completeUserEditing);
+    }
+
+    handleMarginChange = (event) => {
+        console.log("handleMarginChangeComplete to " + event.target.value);
+        this.setState({ margin: event.target.value }, this.completeUserEditing);
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
         this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor,
                                       this.state.fontSize, this.state.backgroundColor, this.state.borderColor, this.state.borderRadius, 
-                                      this.state.borderThickness);
+                                      this.state.borderThickness, this.state.padding, this.state.margin);
     }
 
     render() {
@@ -77,9 +89,9 @@ class TextEditSidebar extends Component {
                 </div>
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <span className="card-title">Text</span>
+                        <span className="card-title"></span>
                         <div className="row">
-                            <div className="col s4">Color:</div>
+                            <div className="col s4">Text Color:</div>
                             <div className="col s8">
                                 <input type="color"
                                         onChange={this.handleTextColorChange}
@@ -125,6 +137,22 @@ class TextEditSidebar extends Component {
                                 <input type="range" min="0" max="50" 
                                     onChange={this.handleBorderThicknessChange}
                                     value={this.props.logo.borderThickness} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Padding:</div>
+                            <div className="col s8">
+                                <input type="range" min="0" max="50" 
+                                    onChange={this.handlePaddingChange}
+                                    value={this.props.logo.padding} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Margin:</div>
+                            <div className="col s8">
+                                <input type="range" min="0" max="50" 
+                                    onChange={this.handleMarginChange}
+                                    value={this.props.logo.margin} />
                             </div>
                         </div>
                     </div>

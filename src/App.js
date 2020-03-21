@@ -27,7 +27,10 @@ export const LogoDefaults = {
   BACKGROUND_COLOR : "#FFFFFF",
   BORDER_COLOR : "#FFFFFF",
   BORDER_RADIUS : 5,
-  BORDER_THICKNESS : 2
+  BORDER_THICKNESS : 2,
+  BORDER_STYLE : "solid",
+  PADDING : 5,
+  MARGIN : 10
 }
 
 // App IS THE ROOT REACT COMPONENT
@@ -150,7 +153,7 @@ class App extends Component {
    * then add the built transaction to the stack and execute it.
    */
   buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor, newBorderColor,
-                                newBorderRadius, newBorderThickness) => {
+                                newBorderRadius, newBorderThickness, newPadding, newMargin) => {
     // THIS WILL BE THE LOGO AFTER THE CHANGE HAPPENS, NOTE WE BUILD
     // AN ENTIRELY NEW LOGO EACH TIME BUT IT SHOULD KEEP THE SAME KEY
     let postEditLogo = {
@@ -161,7 +164,9 @@ class App extends Component {
       backgroundColor: newBackgroundColor,
       borderColor: newBorderColor,
       borderRadius: newBorderRadius,
-      borderThickness: newBorderThickness
+      borderThickness: newBorderThickness,
+      padding: newPadding,
+      margin: newMargin
     };
 
     // NOW BUILD THE TRANSACTION OBJECT
@@ -234,7 +239,9 @@ class App extends Component {
       backgroundColor: LogoDefaults.BACKGROUND_COLOR,
       borderColor: LogoDefaults.BORDER_COLOR,
       borderRadius: LogoDefaults.BORDER_RADIUS,
-      borderThickness: LogoDefaults.BORDER_THICKNESS
+      borderThickness: LogoDefaults.BORDER_THICKNESS,
+      padding: LogoDefaults.PADDING,
+      margin: LogoDefaults.MARGIN
     }
     return newLogo;
   }
@@ -324,6 +331,8 @@ class App extends Component {
     text += "\tborderColor: " + logoToDisplay.borderColor + "\n";
     text += "\tborderRadius: " + logoToDisplay.borderRadius + "\n";
     text += "\tborderThickness: " + logoToDisplay.borderThickness + "\n";
+    text += "\tpadding: " + logoToDisplay.padding + "\n";
+    text += "\tmargin: " + logoToDisplay.margin + "\n";
     text += "}";
     return text;
   }
