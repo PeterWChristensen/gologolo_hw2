@@ -48,9 +48,7 @@ class TextEditSidebar extends Component {
     
 
     handleUndo = () => {
-        console.log(this.props.logo);
-        this.props.undoCallback();
-        console.log(this.props.logo);   
+        this.props.undoCallback();  
     }
 
     handleRedo = () => {
@@ -115,7 +113,7 @@ class TextEditSidebar extends Component {
         let redoDisabled = !this.props.canRedo();
         let undoClass = "waves-effect waves-light btn-small";
         let redoClass = "waves-effect waves-light btn-small";
-
+    
         if (undoDisabled)
             undoClass += " disabled";
         if (redoDisabled)
@@ -222,7 +220,7 @@ class TextEditSidebar extends Component {
                             <div className="col s4">Margin:</div>
                             <div className="col s8">
                                 <div style={{textAlign: "center"}}> {this.props.logo.margin} </div>
-                                <input type="range" min="0" max="50" 
+                                <input type="range" min="0" max="100" 
                                     onChange={this.handleMarginChange}
                                     value={this.props.logo.margin} />
                             </div>
