@@ -296,7 +296,7 @@ class App extends Component {
     const nextLogoToEdit = nextLogos.find((testLogo) => {
       return (testLogo.key === this.state.currentLogo.key);
     });
-    console.log("nextLogoToEdit: " + nextLogoToEdit);
+    console.log("nextLogoToEdit: " + nextLogoToEdit.text);
 
     // AND SET THE STATE, WHICH SHOULD FORCE A render
     this.setState({

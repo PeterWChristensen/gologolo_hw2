@@ -25,14 +25,7 @@ class Navbar extends React.Component {
     console.log("handleDeleteLogo");
     this.props.deleteLogoCallback(this.props.logo.key);
   }
-/*
-  <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li id="trashIcon" style={ {cursor: "pointer", fontSize: "35pt"}} 
-                onClick={this.handleDeleteLogo}>
-                &#128465;
-            </li>
-          </ul>
-*/
+
   render() {
     return (
       <nav>

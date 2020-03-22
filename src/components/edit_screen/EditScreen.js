@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Navbar from './Navbar.js'
 import TextEditSidebar from './TextEditSidebar.js'
 import TextEditWorkspace from './TextEditWorkspace.js'
-import { Modal, Button } from 'react-materialize';
 
 export class EditScreen extends Component {
     constructor(props) {
@@ -13,7 +12,17 @@ export class EditScreen extends Component {
         console.log("\tEditScreen constructor");
 
         this.state = {  
-            deleteModalVisible: false
+            logo: this.props.logo,
+            text : this.props.logo.text,
+            textColor : this.props.logo.textColor,
+            fontSize : this.props.logo.fontSize,
+            backgroundColor : this.props.logo.backgroundColor,
+            borderColor : this.props.logo.borderColor,
+            borderRadius : this.props.logo.borderRadius,
+            borderThickness : this.props.logo.borderThickness,
+            borderStyle : "solid",
+            padding : this.props.logo.padding,
+            margin : this.props.logo.margin
         }
     }
 
@@ -25,10 +34,17 @@ export class EditScreen extends Component {
         console.log("\tEditScreen component will unmount");
     }
 
-    toggleDeletemModal(event) {
-        this.setState(prevState => ({
-          deleteModalVisible: !prevState.toggleDeletemModal
-        }));
+    updateState = () => {
+            this.setState({
+                logo: this.props.logo
+            });
+    }
+
+    componentDidUpdate = (prevProps) =>  {
+        console.log("\tEditScreen did update")
+        if (this.props.logo !== prevProps.logo) {
+            this.updateState();
+          }
     }
 
     render() {

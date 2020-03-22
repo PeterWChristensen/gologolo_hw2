@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Modal, Button } from 'react-materialize';
 
 class TextEditSidebar extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class TextEditSidebar extends Component {
         // WE'LL MANAGE THE UI CONTROL
         // VALUES HERE
         this.state = {
+            text : this.props.logo.text,
             textColor : this.props.logo.textColor,
             fontSize : this.props.logo.fontSize,
             backgroundColor : this.props.logo.backgroundColor,
@@ -22,12 +24,42 @@ class TextEditSidebar extends Component {
 
     }
 
+    updateState = () => {
+        this.setState({
+        text : this.props.logo.text,
+        textColor : this.props.logo.textColor,
+        fontSize : this.props.logo.fontSize,
+        backgroundColor : this.props.logo.backgroundColor,
+        borderColor : this.props.logo.borderColor,
+        borderRadius : this.props.logo.borderRadius,
+        borderThickness : this.props.logo.borderThickness,
+        borderStyle : "solid",
+        padding : this.props.logo.padding,
+        margin : this.props.logo.margin
+        });
+}
+    
+    componentDidUpdate = (prevProps) =>  {
+        console.log("\tTextEditSidebar did update")
+        if (this.props.logo !== prevProps.logo) {
+            this.updateState();
+          }
+    }
+    
+
     handleUndo = () => {
+        console.log(this.props.logo);
         this.props.undoCallback();
+        console.log(this.props.logo);   
     }
 
     handleRedo = () => {
         this.props.redoCallback();
+    }
+
+    handleTextChange = (event) => {
+        console.log("handleTextChange to " + event.target.value);
+        this.setState({ text: event.target.value});
     }
 
     handleTextColorChange = (event) => {
@@ -73,7 +105,7 @@ class TextEditSidebar extends Component {
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor,
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor,
                                       this.state.fontSize, this.state.backgroundColor, this.state.borderColor, this.state.borderRadius, 
                                       this.state.borderThickness, this.state.padding, this.state.margin);
     }
@@ -92,7 +124,32 @@ class TextEditSidebar extends Component {
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <button className="waves-effect waves-light btn-small">&#9998;</button>
+                        <Modal
+                            actions={[
+                            <Button flat modal="close" node="button" waves="green" onClick={this.completeUserEditing}>Confirm</Button>,
+                            <Button flat modal="close" node="button" waves="green">Cancel</Button>
+                            ]}
+                            bottomSheet={false}
+                            fixedFooter={false}
+                            header="Enter Logo Text"
+                            id="modal-0"
+                            options={{
+                            dismissible: true,
+                            endingTop: '10%',
+                            inDuration: 250,
+                            onCloseEnd: null,
+                            onCloseStart: null,
+                            onOpenEnd: null,
+                            onOpenStart: null,
+                            opacity: 0.5,
+                            outDuration: 250,
+                            preventScrolling: true,
+                            startingTop: '4%'
+                            }}  
+                            trigger={<Button node="button" style={{fontSize: "20pt", backgroundColor: "#26A69A"}}>&#9998;</Button>}>
+                            <input type="text" value={this.state.text}
+                                    onChange={this.handleTextChange}/>
+                        </Modal>
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
                         <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
