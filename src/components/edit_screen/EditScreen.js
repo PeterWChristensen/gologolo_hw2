@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Navbar from './Navbar.js'
 import TextEditSidebar from './TextEditSidebar.js'
 import TextEditWorkspace from './TextEditWorkspace.js'
+import { Modal, Button } from 'react-materialize';
 
 export class EditScreen extends Component {
     constructor(props) {
@@ -24,9 +25,16 @@ export class EditScreen extends Component {
         console.log("\tEditScreen component will unmount");
     }
 
+    toggleDeletemModal(event) {
+        this.setState(prevState => ({
+          deleteModalVisible: !prevState.toggleDeletemModal
+        }));
+    }
+
     render() {
         // DISPLAY WHERE WE ARE
         console.log("\tEditScreen render");
+       
         return (
             <div className="container">
                 <Navbar goToHomeCallback={this.props.goToHomeCallback} 
